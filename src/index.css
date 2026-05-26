@@ -1,0 +1,138 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+  /* Color Palette - Cyberpunk / Portal Theme */
+  --bg-darker: #08090d;
+  --bg-dark: #0f111a;
+  --bg-card: rgba(21, 25, 41, 0.7);
+  --bg-card-hover: rgba(28, 33, 53, 0.85);
+  
+  --primary: #39ff14; /* Rick's Portal Green */
+  --primary-glow: rgba(57, 255, 20, 0.2);
+  --secondary: #00f0ff; /* Cyber Cyan */
+  --secondary-glow: rgba(0, 240, 255, 0.15);
+  
+  --text-main: #e2e8f0;
+  --text-muted: #94a3b8;
+  --text-bright: #ffffff;
+  
+  --border-color: rgba(255, 255, 255, 0.06);
+  --border-color-glow: rgba(57, 255, 20, 0.3);
+  
+  --sans-font: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.6);
+  --portal-shadow: 0 0 20px rgba(57, 255, 20, 0.25);
+  
+  --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-darker);
+  color: var(--text-main);
+  font-family: var(--sans-font);
+  min-height: 100vh;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  background-image: 
+    radial-gradient(circle at 10% 20%, rgba(57, 255, 20, 0.03) 0%, transparent 40%),
+    radial-gradient(circle at 90% 80%, rgba(0, 240, 255, 0.03) 0%, transparent 40%),
+    radial-gradient(ellipse at 50% 50%, rgba(15, 17, 26, 0.8) 0%, var(--bg-darker) 100%);
+  background-attachment: fixed;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100%;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-darker);
+}
+::-webkit-scrollbar-thumb {
+  background: #1f2538;
+  border-radius: 5px;
+  border: 2px solid var(--bg-darker);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary);
+}
+
+/* Container Utility */
+.container {
+  max-width: 1280px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Animations */
+@keyframes spinPortal {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes pulseGlow {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 0.9; }
+}
+
+.float-animation {
+  animation: float 4s ease-in-out infinite;
+}
+
+/* Base button styles */
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: var(--sans-font);
+  transition: all var(--transition-fast);
+}
+
+/* Page transitions / loader */
+.loader-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 0;
+  gap: 20px;
+}
+
+.portal-loader {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #39ff14 0%, #00ff88 40%, transparent 70%);
+  border: 4px dashed var(--primary);
+  animation: spinPortal 5s linear infinite;
+  box-shadow: 0 0 30px var(--primary-glow);
+}
+
+.loader-text {
+  font-size: 1.2rem;
+  color: var(--primary);
+  font-weight: 500;
+  letter-spacing: 2px;
+  animation: pulseGlow 1.5s infinite;
+}

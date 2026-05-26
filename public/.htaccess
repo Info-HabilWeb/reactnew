@@ -1,0 +1,9 @@
+# Configuración para redirección de rutas SPA (Single Page Application)
+# Esto asegura que si el usuario recarga una ruta interna en cPanel, Apache sirva el archivo index.html.
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule ^ index.html [L]
+</IfModule>
